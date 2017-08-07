@@ -1,0 +1,40 @@
+body{
+	 background-image:url(images/m1.jpg);
+	
+	 
+ }
+#wrapper{
+	width:1200px;
+	margin:30px auto;
+	height:900px;
+	background-image:url(images/b2.jpg);
+	outline:1px solid #111111;
+	position:relative;
+}
+#header{
+	outline:1px solid #111111;
+	height:200px;
+	padding:10px 20px;
+	
+}
+#content{
+	padding:10px 20px;
+	height:650px;
+	outline:1px solid #111111;
+}
+p{
+
+font:italic bold 90px Tahoma;
+}
+ #rez{
+	position:absolute;
+	left:25px;
+	top:25px;
+	z-index:1;
+}
+p{
+	text-align:center;
+}
+#back{
+	position:absolute;
+}
