@@ -63,11 +63,11 @@
       <artifactId>hibernate-entitymanager</artifactId>
       <version>4.3.11.Final</version>
     </dependency>
-      <dependency>
-          <groupId>org.sonatype.forge</groupId>
-          <artifactId>forge-parent</artifactId>
-          <version>10</version>
-      </dependency>
+      <!--<dependency>-->
+          <!--<groupId>org.sonatype.forge</groupId>-->
+          <!--<artifactId>forge-parent</artifactId>-->
+          <!--<version>10</version>-->
+      <!--</dependency>-->
 
     <dependency>
       <groupId>org.projectlombok</groupId>
