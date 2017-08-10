@@ -75,7 +75,7 @@
             <ul class="pagination">
                 <c:if test="${allPages ne null}">
                     <c:forEach var="i" begin="1" end="${allPages}">
-                        <li><a href="/basket_page/?page=<c:out value="${i - 1}"/>"><c:out value="${i}"/></a></li>
+                        <li><a href="/basket_page2/?page=<c:out value="${i - 1}"/>"><c:out value="${i}"/></a></li>
                     </c:forEach>
                 </c:if>
 

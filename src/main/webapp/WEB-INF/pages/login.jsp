@@ -10,78 +10,78 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div id="wrapper">
+    <div id="wrapper">
 
-    <div id="header">
+            <div id="header">
 
-        <img src="/static/images/d4.png" width="150" height="150" id="rez" alt="clock">
-        <p >Wheels and Discs</p>
-    </div>
-    <div id="content">
-                    <div align="center">
-                        <c:url value="/j_spring_security_check" var="loginUrl" />
-
-
-                        <form action="${loginUrl}" method="POST">
+                <img src="/static/images/d4.png" width="150" height="150" id="rez" alt="clock">
+                <p >Wheels and Discs</p>
+            </div>
+                <div id="content">
+                                <div align="center">
+                                    <c:url value="/j_spring_security_check" var="loginUrl" />
 
 
-                            <c:if test="${param.error ne null}">
-                                <p>Wrong login or password!</p>
+                                    <form action="${loginUrl}" method="POST">
+
+
+                                        <c:if test="${param.error ne null}">
+                                            <p>Wrong login or password!</p>
+                                        </c:if>
+
+                                        <c:if test="${param.logout ne null}">
+
+                                        </c:if>
+                                    </form>
+                                </div>
+
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <td></td>
+                            <td><b>Type</b></td>
+                            <td><b>Brand</b></td>
+                            <td><b>Diametr</b></td>
+                            <td><b>Price($ USA)</b></td>
+
+                        </tr>
+                        </thead>
+                        <c:forEach items="${products}" var="product">
+                            <tr>
+                                <td></td>
+                                <c:choose>
+                                    <c:when test="${product.type ne null}">
+                                        <td>${product.type.name}</td>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <td>Default</td>
+                                    </c:otherwise>
+                                </c:choose>
+                                <td>${product.brand}</td>
+                                <td>${product.diametr}</td>
+                                <td>${product.price}</td>
+
+                            </tr>
+                        </c:forEach>
+                    </table>
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <c:if test="${allPages ne null}">
+                                <c:forEach var="i" begin="1" end="${allPages}">
+                                    <li><a href="/login/?page=<c:out value="${i - 1}"/>"><c:out value="${i}"/></a></li>
+                                </c:forEach>
                             </c:if>
+                            <%--<c:if test="${byTypePages ne null}">--%>
+                                <%--<c:forEach var="i" begin="1" end="${byTypePages}">--%>
+                                    <%--<li><a href="/type/${typeId}?page=<c:out value="${i - 1}"/>"><c:out value="${i}"/></a></li>--%>
+                                <%--</c:forEach>--%>
+                            <%--</c:if>--%>
+                        </ul>
+                    </nav>
 
-                            <c:if test="${param.logout ne null}">
-
-                            </c:if>
-                        </form>
-                    </div>
-
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <td></td>
-                <td><b>Type</b></td>
-                <td><b>Brand</b></td>
-                <td><b>Diametr</b></td>
-                <td><b>Price($ USA)</b></td>
-
-            </tr>
-            </thead>
-            <c:forEach items="${products}" var="product">
-                <tr>
-                    <td><input type="checkbox" name="toDelete[]" value="${product.id}" id="checkbox_${product.id}"/></td>
-                    <c:choose>
-                        <c:when test="${product.type ne null}">
-                            <td>${product.type.name}</td>
-                        </c:when>
-                        <c:otherwise>
-                            <td>Default</td>
-                        </c:otherwise>
-                    </c:choose>
-                    <td>${product.brand}</td>
-                    <td>${product.diametr}</td>
-                    <td>${product.price}</td>
-
-                </tr>
-            </c:forEach>
-        </table>
-        <nav aria-label="Page navigation">
-            <ul class="pagination">
-                <c:if test="${allPages ne null}">
-                    <c:forEach var="i" begin="1" end="${allPages}">
-                        <li><a href="/?page=<c:out value="${i - 1}"/>"><c:out value="${i}"/></a></li>
-                    </c:forEach>
-                </c:if>
-                <c:if test="${byTypePages ne null}">
-                    <c:forEach var="i" begin="1" end="${byTypePages}">
-                        <li><a href="/type/${typeId}?page=<c:out value="${i - 1}"/>"><c:out value="${i}"/></a></li>
-                    </c:forEach>
-                </c:if>
-            </ul>
-        </nav>
-
-
+                    <button type="button" id="delete_product" class="btn btn-default navbar-btn">Delete product</button>
+                </div>
     </div>
-</div>
 
 <div id="login">
     <div align="center">

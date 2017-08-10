@@ -11,95 +11,95 @@
 </head>
 <body>
 
-<div id="wrapper">
+    <div id="wrapper">
 
-    <div id="header">
+        <div id="header">
 
-        <img src="/static/images/d4.png" width="150" height="150" id="rez">
-        <p >Wheels and Discs</p>
-    </div>
-    <div id="content">
+            <img src="/static/images/d4.png" width="150" height="150" id="rez">
+            <p >Wheels and Discs</p>
+        </div>
+            <div id="content">
 
 
 
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul id="groupList" class="nav navbar-nav">
-                        <li><button type="button" id="admin" class="btn btn-default navbar-btn">Admin menu</button></li>
-                        <%--<li><button type="button" id="add_product" class="btn btn-default navbar-btn">Add product</button></li>--%>
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul id="groupList" class="nav navbar-nav">
+                                <li><button type="button" id="admin" class="btn btn-default navbar-btn">Admin menu</button></li>
+                                <%--<li><button type="button" id="add_product" class="btn btn-default navbar-btn">Add product</button></li>--%>
 
-                        <%--<li><button type="button" id="delete_product" class="btn btn-default navbar-btn">Delete product</button></li>--%>
-                        <li><button type="button" id="order_product" class="btn btn-default navbar-btn">Order product</button></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Types <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/">Default</a></li>
-                                <c:forEach items="${types}" var="type">
-                                    <li><a href="/type/${type.id}">${type.name}</a></li>
-                                </c:forEach>
+                                <%--<li><button type="button" id="delete_product" class="btn btn-default navbar-btn">Delete product</button></li>--%>
+                                <li><button type="button" id="order_product" class="btn btn-default navbar-btn">Order product</button></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Types <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/">Default</a></li>
+                                        <c:forEach items="${types}" var="type">
+                                            <li><a href="/type/${type.id}">${type.name}</a></li>
+                                        </c:forEach>
+                                    </ul>
+                                </li>
+
                             </ul>
-                        </li>
 
+                            <%--<button type="button" id="basket" class="btn btn-default navbar-btn">Basket of Orders</button>--%>
+                            <button type="button" id="basket2" class="btn btn-default navbar-btn">Basket</button>
+
+
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+                </nav>
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <td></td>
+                        <td><b>Type</b></td>
+                        <td><b>Brand</b></td>
+                        <td><b>Diametr</b></td>
+                        <td><b>Price($ USA)</b></td>
+
+                    </tr>
+                    </thead>
+                    <c:forEach items="${products}" var="product">
+                        <tr>
+                            <td><input type="checkbox" name="toDelete[]" value="${product.id}" id="checkbox_${product.id}"/></td>
+                            <c:choose>
+                                <c:when test="${product.type ne null}">
+                                    <td>${product.type.name}</td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td>Default</td>
+                                </c:otherwise>
+                            </c:choose>
+                            <td>${product.brand}</td>
+                            <td>${product.diametr}</td>
+                            <td>${product.price}</td>
+
+                        </tr>
+                    </c:forEach>
+                </table>
+
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <c:if test="${allPages ne null}">
+                            <c:forEach var="i" begin="1" end="${allPages}">
+                                <li><a href="/?page=<c:out value="${i - 1}"/>"><c:out value="${i}"/></a></li>
+                            </c:forEach>
+                        </c:if>
+                        <c:if test="${byTypePages ne null}">
+                            <c:forEach var="i" begin="1" end="${byTypePages}">
+                                <li><a href="/type/${typeId}?page=<c:out value="${i - 1}"/>"><c:out value="${i}"/></a></li>
+                            </c:forEach>
+                        </c:if>
                     </ul>
+                </nav>
+            </div>
 
-                    <button type="button" id="basket" class="btn btn-default navbar-btn">Basket of Orders</button>
-                    <button type="button" id="basket2" class="btn btn-default navbar-btn">Basket</button>
-
-
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
-        </nav>
-
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <td></td>
-                <td><b>Type</b></td>
-                <td><b>Brand</b></td>
-                <td><b>Diametr</b></td>
-                <td><b>Price($ USA)</b></td>
-
-            </tr>
-            </thead>
-            <c:forEach items="${products}" var="product">
-                <tr>
-                    <td><input type="checkbox" name="toDelete[]" value="${product.id}" id="checkbox_${product.id}"/></td>
-                    <c:choose>
-                        <c:when test="${product.type ne null}">
-                            <td>${product.type.name}</td>
-                        </c:when>
-                        <c:otherwise>
-                            <td>Default</td>
-                        </c:otherwise>
-                    </c:choose>
-                    <td>${product.brand}</td>
-                    <td>${product.diametr}</td>
-                    <td>${product.price}</td>
-
-                </tr>
-            </c:forEach>
-        </table>
-
-        <nav aria-label="Page navigation">
-            <ul class="pagination">
-                <c:if test="${allPages ne null}">
-                    <c:forEach var="i" begin="1" end="${allPages}">
-                        <li><a href="/?page=<c:out value="${i - 1}"/>"><c:out value="${i}"/></a></li>
-                    </c:forEach>
-                </c:if>
-                <c:if test="${byTypePages ne null}">
-                    <c:forEach var="i" begin="1" end="${byTypePages}">
-                        <li><a href="/type/${typeId}?page=<c:out value="${i - 1}"/>"><c:out value="${i}"/></a></li>
-                    </c:forEach>
-                </c:if>
-            </ul>
-        </nav>
     </div>
 
-</div>
-</div>
 
 
 <div id="login">
