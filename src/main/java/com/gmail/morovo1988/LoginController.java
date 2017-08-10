@@ -12,16 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-@RequestMapping("/login")
+
 public class LoginController {
     static final int ITEMS_PER_PAGE = 10;
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private ProductService  productService;
 
-    @RequestMapping
+    @RequestMapping("/login")
     public String loginPage(Model model, @RequestParam(required = false, defaultValue = "0") Integer page) {
         if (page < 0) page = 0;
 
