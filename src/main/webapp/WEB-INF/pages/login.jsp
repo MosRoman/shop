@@ -79,7 +79,7 @@
                         </ul>
                     </nav>
 
-                    <button type="button" id="delete_product" class="btn btn-default navbar-btn">Delete product</button>
+                    
                 </div>
     </div>
 
